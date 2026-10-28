@@ -107,7 +107,7 @@ Follow the installation and verification steps below before relying on the envir
 
 The original training dataset is not included in Git because of its size.
 
-Download the Credit Card Fraud Detection dataset from Kaggle, extract it, and place creditcard.csv at:
+Download the Credit Card Fraud Detection dataset from [Kaggle](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud). Extract it and place `creditcard.csv` at:
 
 ```powershell
 data/creditcard.csv
