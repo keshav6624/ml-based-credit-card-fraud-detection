@@ -103,6 +103,24 @@ The `requirements.txt` file pins scikit-learn `1.6.1`, but the **complete pinned
 
 Follow the installation and verification steps below before relying on the environment.
 
+## Dataset
+
+The original training dataset is not included in Git because of its size.
+
+Download the Credit Card Fraud Detection dataset from Kaggle, extract it, and place creditcard.csv at:
+
+```powershell
+data/creditcard.csv
+```
+
+## Retraining Models
+
+The repository includes retrain_models.py for model retraining. Retraining requires the training dataset described in the Training Dataset section.
+
+```powershell
+python retrain_models.py
+```
+
 ## Installation
 
 ### Windows PowerShell

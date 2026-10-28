@@ -289,6 +289,32 @@ def _prediction_cards(predictions: dict[str, float | int]) -> None:
         st.caption("K-Means output is a cluster ID only â€” unsupervised and never a fraud label.")
 
 
+def _render_fraud_status(predictions: dict[str, float | int]) -> None:
+    """Render human-readable status for the supervised classes returned by predict()."""
+    status_columns = (
+        ("logistic_regression_class", "Logistic Regression"),
+        ("neural_network_class", "Neural Network"),
+    )
+    rendered = False
+    for column, model_name in status_columns:
+        if column not in predictions:
+            continue
+        rendered = True
+        if int(predictions[column]) == 1:
+            st.error(f"{model_name}: Possible Fraud Detected")
+        else:
+            st.success(f"{model_name}: No Fraud Detected")
+        st.caption(
+            "This result is a machine-learning prediction, not confirmation that a "
+            "transaction is fraudulent."
+        )
+    if not rendered and "kmeans_cluster" in predictions:
+        st.info(
+            "K-Means provides a cluster assignment only; it does not produce a validated "
+            "fraud or non-fraud classification."
+        )
+
+
 def _render_overview() -> None:
     output = st.session_state.output
     input_frame = st.session_state.input_frame
@@ -533,6 +559,7 @@ def _render_manual(models) -> None:
             st.error(f"Prediction failed: {exc}")
         else:
             st.success("Transaction scored with the loaded artifacts.")
+            _render_fraud_status(result)
             _prediction_cards(result)
             st.caption(
                 "Probabilities are model scores, not calibrated real-world fraud "

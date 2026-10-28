@@ -120,6 +120,47 @@ def test_manual_prediction_uses_exactly_30_features_and_excludes_class(models):
         predict(models, {**payload, "Unlucky": 1.0})
 
 
+def test_manual_prediction_renders_supervised_fraud_statuses_without_relabeling_kmeans(
+    monkeypatch,
+):
+    messages = {"success": [], "error": [], "info": [], "caption": []}
+    for method in messages:
+        monkeypatch.setattr(
+            app_module.st,
+            method,
+            lambda message, _method=method, **kwargs: messages[_method].append(message),
+        )
+
+    app_module._render_fraud_status(
+        {
+            "logistic_regression_class": 0,
+            "neural_network_class": 1,
+            "kmeans_cluster": 0,
+        }
+    )
+
+    assert messages["success"] == ["Logistic Regression: No Fraud Detected"]
+    assert messages["error"] == ["Neural Network: Possible Fraud Detected"]
+    assert len(messages["caption"]) == 2
+    assert all("not confirmation" in message for message in messages["caption"])
+    assert messages["info"] == []
+
+
+def test_manual_prediction_explains_kmeans_is_not_a_fraud_status(monkeypatch):
+    info_messages = []
+    monkeypatch.setattr(
+        app_module.st,
+        "info",
+        lambda message, **kwargs: info_messages.append(message),
+    )
+
+    app_module._render_fraud_status({"kmeans_cluster": 1})
+
+    assert len(info_messages) == 1
+    assert "cluster assignment only" in info_messages[0]
+    assert "fraud or non-fraud classification" in info_messages[0]
+
+
 # ---------------------------------------------------------------------------
 # Mode A row selection returns the matching row's input and predictions
 # ---------------------------------------------------------------------------
