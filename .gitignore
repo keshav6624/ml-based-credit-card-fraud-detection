@@ -1,0 +1,65 @@
+# Byte-compiled / interpreter caches
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Test and tooling caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.tox/
+.nox/
+
+# Coverage artifacts
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Streamlit secrets (never commit credentials)
+.streamlit/secrets.toml
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor settings
+.vscode/
+.idea/
+
+# Working/scratch exports and logs
+*.log
+*.tmp
+*.temp
+*.swp
+*.swo
+
+# Training outputs and staging artifacts
+staging_models/
+training_runs/
+
+# Local backups
+*.bak
+*.prebom.bak
+
+# Local dataset (document download instructions in README)
+data/creditcard.csv
+
+# Local project documentation
+docs/TEACHER_PROJECT_EXPLANATION.md
+
+# Artifact manifest backups
+docs/artifact_manifest.json.bak
+docs/artifact_manifest.json.prebom.bak

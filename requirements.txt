@@ -1,0 +1,18 @@
+# Pinned dependencies for the four saved model artifacts in models/.
+# See docs/artifact_manifest.json and the "Dependency compatibility" section
+# of README.md before installing.
+#
+# Runtime (tested combination notes are in README.md). The distribution is
+# tensorflow-cpu (import name: tensorflow) - never add a second `tensorflow`
+# distribution alongside it.
+tensorflow-cpu==2.20.0
+keras==3.15.1
+scikit-learn==1.6.1
+scipy==1.15.0
+numpy==1.26.4
+pandas==2.2.2
+joblib==1.4.2
+streamlit==1.56.0
+
+# Development / testing
+pytest==8.2.0

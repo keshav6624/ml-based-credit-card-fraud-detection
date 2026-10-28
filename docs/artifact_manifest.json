@@ -1,0 +1,28 @@
+{
+    "schema_version":  1,
+    "generated":  "2026-10-29",
+    "algorithm":  "sha256",
+    "note":  "Manifest records the currently deployed model artifacts. Retraining requires evaluation, validation, and manifest regeneration. The K-Means artifact\u0027s saved cluster_to_class mapping is unvalidated (it is degenerate: {0: 0, 1: 0}) and must never be used to predict fraud; K-Means output is restricted to cluster IDs only.",
+    "artifacts":  [
+                      {
+                          "path":  "models/kmeans.joblib",
+                          "sha256":  "13c3b34d4b886c0c19658a5baf4b14cc1b2e8d46becd4b113a4d3bdc28a251e6",
+                          "bytes":  914343
+                      },
+                      {
+                          "path":  "models/logistic_regression.joblib",
+                          "sha256":  "ffeb07cce9df3b7c06d38125ce2edb4f946ec70d2e6f1b1ee37414712454e9ba",
+                          "bytes":  3093
+                      },
+                      {
+                          "path":  "models/neural_network.keras",
+                          "sha256":  "8817221e74282e6746ef355542d771a15f846d5df1d6792aab62ed8e656175ae",
+                          "bytes":  79485
+                      },
+                      {
+                          "path":  "models/neural_network_preprocessing.joblib",
+                          "sha256":  "761cef2816229add76d08f525ab36df413a7dc6578d26489f3cadb3a6e66e31b",
+                          "bytes":  2160
+                      }
+                  ]
+}
